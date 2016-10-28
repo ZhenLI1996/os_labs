@@ -1,0 +1,1 @@
+cmd_/home/luc/16_17/os_labs/Lab1-2/print_pid.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/luc/16_17/os_labs/Lab1-2/print_pid.ko /home/luc/16_17/os_labs/Lab1-2/print_pid.o /home/luc/16_17/os_labs/Lab1-2/print_pid.mod.o

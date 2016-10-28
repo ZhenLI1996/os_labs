@@ -11,6 +11,7 @@ static __init int print_pid(void)
 	int total = 0;
 	int running=0,interruptible=0,uninterruptible=0,stopped=0,traced=0,unknown=0;
 	task = &init_task;
+	printk("\n\n====== print_pid module starts ======\n");
 	printk("PID\tNAME\tSTATE\tPARENT\n");
 //	read_lock(&tasklist_lock);
 	list_for_each(pos,&task->tasks)//?
@@ -47,6 +48,7 @@ static __init int print_pid(void)
 	printk("TASK_UNINTERRUPTIBLE:		%4d\n", uninterruptible);
 	printk("TASK_STOPPED:			%4d\n", stopped);
 	printk("TASK_TRACED:			%4d\n", traced);
+	printk("\n====== print_pid module ends ======\n\n");
 	return 0;
 }
 
