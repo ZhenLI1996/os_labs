@@ -10,8 +10,15 @@ using namespace std;
 // lock and cond of creating thread:
 pthread_mutex_t creating_lock = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t creating_cond = PTHREAD_COND_INITIALIZER;
+    // these two locks are used to synchronize
+    // main thread and every new thread recently created
+    // in order to let the new thread read the correct parameters
+pthread_mutex_t created_lock = PTHREAD_MUTEX_INITIALIZER;
+    // this lock is used to tell all car threads and the police thread
+    // that the input from console is all read in,
+    // and all of you can do what you should do
 
-// identifier of 4 diresctions:
+// identifier of 4 directions:
 const int NORTH = 0;
 const int EAST = 1;
 const int SOUTH = 2;
@@ -52,11 +59,13 @@ pthread_cond_t north_first = PTHREAD_COND_INITIALIZER;
 pthread_cond_t east_first = PTHREAD_COND_INITIALIZER;
 pthread_cond_t south_first = PTHREAD_COND_INITIALIZER;
 pthread_cond_t west_first = PTHREAD_COND_INITIALIZER;
-*/
+
 pthread_cond_t first_cond[4] = {PTHREAD_COND_INITIALIZER,
                                 PTHREAD_COND_INITIALIZER,
                                 PTHREAD_COND_INITIALIZER,
                                 PTHREAD_COND_INITIALIZER};
+*/
+
 
 // mutex for cond var:
 pthread_mutex_t wait_lock[4] = {PTHREAD_MUTEX_INITIALIZER,
@@ -81,15 +90,17 @@ vector<int> result;
 
 // police thread:
 void* police_proc(void* in){
-	//HERE!!
-    sleep(5);
+    pthread_mutex_lock(&created_lock);
+    cout << "police received CREATED message.\n";
+    pthread_mutex_unlock(&created_lock);
+    sleep(4);
 
     const bool DEADLOCK = true;
     const bool NO_DEADLOCK = false;
     bool flag = DEADLOCK;
 
     while(true){
-        sleep(2);
+        sleep(1);
         pthread_mutex_lock(&running);
         cout << "police lock running.\n";
 /*        if(cnt[NORTH] > 0
@@ -104,25 +115,25 @@ void* police_proc(void* in){
             cout << "DEADLOCK DETECTED!\n";
             cout << "police: North Go First\n";
             if(cnt[NORTH]){
-                pthread_cond_signal(&first_cond[NORTH]);
+                //pthread_cond_signal(&first_cond[NORTH]);
                 pthread_mutex_lock(&next_lock);
                 next_to_go = NORTH;
                 pthread_mutex_unlock(&next_lock);
             }
             else if(cnt[EAST]){
-                pthread_cond_signal(&first_cond[EAST]);
+                //pthread_cond_signal(&first_cond[EAST]);
                 pthread_mutex_lock(&next_lock);
                 next_to_go = EAST;
                 pthread_mutex_unlock(&next_lock);
             }
             else if(cnt[SOUTH]){
-                pthread_cond_signal(&first_cond[SOUTH]);
+                //pthread_cond_signal(&first_cond[SOUTH]);
                 pthread_mutex_lock(&next_lock);
                 next_to_go = SOUTH;
                 pthread_mutex_unlock(&next_lock);
             }
             else{
-                pthread_cond_signal(&first_cond[WEST]);
+                //pthread_cond_signal(&first_cond[WEST]);
                 pthread_mutex_lock(&next_lock);
                 next_to_go = WEST;
                 pthread_mutex_unlock(&next_lock);
@@ -168,8 +179,13 @@ void* car_proc(void* in){
 	const int input = *reinterpret_cast<int*>(in);
     const int DIRECTION = input & 0x00000003;
     const int id = input >> 2;
-    cout << "Car " << id << " of direction " << DIRECTION << " created. Now sleep(1).\n";
+    cout << "Car " << id << " of direction " << DIRECTION
+         << " created. Now wait for CREATED message.\n";
     pthread_cond_signal(&creating_cond);
+
+    pthread_mutex_lock(&created_lock);
+    cout << "car " << id << " received CREATED message.\n";
+    pthread_mutex_unlock(&created_lock);
     sleep(1);
 	// when this thread is created, add 1 to counter
 	pthread_mutex_lock(&cnt_lock[DIRECTION]);
@@ -196,7 +212,7 @@ void* car_proc(void* in){
             break;
     }
     cout << ".\n";
-	sleep(1); // when ready, sleep for 1 second
+	sleep(3); // when ready, sleep for 1 second
 
 	// wait for "first" signal
 	// HERE!!
@@ -256,19 +272,19 @@ void* car_proc(void* in){
     // give signal to the first non-empty direction on the left
     switch(tmp){
 		case EAST:
-			pthread_cond_signal(&first_cond[EAST]);
+			//pthread_cond_signal(&first_cond[EAST]);
             next_to_go = EAST;
 			break;
 		case SOUTH:
-			pthread_cond_signal(&first_cond[SOUTH]);
+			//pthread_cond_signal(&first_cond[SOUTH]);
             next_to_go = SOUTH;
 			break;
 		case WEST:
-			pthread_cond_signal(&first_cond[WEST]);
+			//pthread_cond_signal(&first_cond[WEST]);
             next_to_go = WEST;
 			break;
 		default:
-			pthread_cond_signal(&first_cond[NORTH]);
+			//pthread_cond_signal(&first_cond[NORTH]);
             next_to_go = NORTH;
 			break;
 	}
@@ -292,6 +308,7 @@ int main(){
     pthread_t thread_cars[100];
     pthread_t thread_police;
 
+    pthread_mutex_lock(&created_lock);
     for(int i = 0; i < input.length(); i++){
         char c = input[i];
         int rc = 0;
@@ -332,6 +349,9 @@ int main(){
         pthread_cond_wait(&creating_cond, &creating_lock);
         pthread_mutex_unlock(&creating_lock);
     }
+    cout << "input from console are all read in.\n";
+    pthread_mutex_unlock(&created_lock);
+
 
     // create police thread
     int rc = pthread_create(&thread_police, NULL, police_proc, nullptr);
