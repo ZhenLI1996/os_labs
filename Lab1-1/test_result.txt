@@ -1,0 +1,434 @@
+test input:
+nnwensnwnsnwsnewnsewnwsewsewnens
+
+output:
+/home/luc/.CLion2016.2/system/cmake/generated/CL-86dec65d/86dec65d/Debug/CL
+Please input the start order:
+e.g.: input neewsw means cars appear in order
+north, east, east, west, south, west
+nnwensnwnsnwsnewnsewnwsewsewnens
+input n
+creating the 0-th car thread succeeded.
+Car 0 of direction north created. Now wait for CREATED message.
+input n
+creating the 1-th car thread succeeded.
+Car 1 of direction north created. Now wait for CREATED message.
+input w
+creating the 2-th car thread succeeded.
+Car 2 of direction west created. Now wait for CREATED message.
+input e
+creating the 3-th car thread succeeded.
+Car 3 of direction east created. Now wait for CREATED message.
+input n
+creating the 4-th car thread succeeded.
+Car 4 of direction north created. Now wait for CREATED message.
+input s
+creating the 5-th car thread succeeded.
+Car 5 of direction south created. Now wait for CREATED message.
+input n
+creating the 6-th car thread succeeded.
+Car 6 of direction north created. Now wait for CREATED message.
+input w
+creating the 7-th car thread succeeded.
+Car 7 of direction west created. Now wait for CREATED message.
+input n
+creating the 8-th car thread succeeded.
+Car 8 of direction north created. Now wait for CREATED message.
+input s
+creating the 9-th car thread succeeded.
+Car 9 of direction south created. Now wait for CREATED message.
+input n
+creating the 10-th car thread succeeded.
+Car 10 of direction north created. Now wait for CREATED message.
+input w
+creating the 11-th car thread succeeded.
+Car 11 of direction west created. Now wait for CREATED message.
+input s
+creating the 12-th car thread succeeded.
+Car 12 of direction south created. Now wait for CREATED message.
+input n
+creating the 13-th car thread succeeded.
+Car 13 of direction north created. Now wait for CREATED message.
+input e
+creating the 14-th car thread succeeded.
+Car 14 of direction east created. Now wait for CREATED message.
+input w
+creating the 15-th car thread succeeded.
+Car 15 of direction west created. Now wait for CREATED message.
+input n
+creating the 16-th car thread succeeded.
+Car 16 of direction north created. Now wait for CREATED message.
+input s
+creating the 17-th car thread succeeded.
+Car 17 of direction south created. Now wait for CREATED message.
+input e
+creating the 18-th car thread succeeded.
+Car 18 of direction east created. Now wait for CREATED message.
+input w
+creating the 19-th car thread succeeded.
+Car 19 of direction west created. Now wait for CREATED message.
+input n
+creating the 20-th car thread succeeded.
+Car 20 of direction north created. Now wait for CREATED message.
+input w
+creating the 21-th car thread succeeded.
+Car 21 of direction west created. Now wait for CREATED message.
+input s
+creating the 22-th car thread succeeded.
+Car 22 of direction south created. Now wait for CREATED message.
+input e
+creating the 23-th car thread succeeded.
+Car 23 of direction east created. Now wait for CREATED message.
+input w
+creating the 24-th car thread succeeded.
+Car 24 of direction west created. Now wait for CREATED message.
+input s
+creating the 25-th car thread succeeded.
+Car 25 of direction south created. Now wait for CREATED message.
+input e
+creating the 26-th car thread succeeded.
+Car 26 of direction east created. Now wait for CREATED message.
+input w
+creating the 27-th car thread succeeded.
+Car 27 of direction west created. Now wait for CREATED message.
+input n
+creating the 28-th car thread succeeded.
+Car 28 of direction north created. Now wait for CREATED message.
+input e
+creating the 29-th car thread succeeded.
+Car 29 of direction east created. Now wait for CREATED message.
+input n
+creating the 30-th car thread succeeded.
+Car 30 of direction north created. Now wait for CREATED message.
+input s
+creating the 31-th car thread succeeded.
+Car 31 of direction south created. Now wait for CREATED message.
+input from console are all read in.
+car 0 received CREATED message.
+car 1 received CREATED message.
+car 2 received CREATED message.
+car 3 received CREATED message.
+car 4 received CREATED message.
+car 5 received CREATED message.
+car 6 received CREATED message.
+car 7 received CREATED message.
+car 8 received CREATED message.
+car 9 received CREATED message.
+car 10 received CREATED message.
+car 11 received CREATED message.
+car 12 received CREATED message.
+car 13 received CREATED message.
+car 14 received CREATED message.
+car 15 received CREATED message.
+car 16 received CREATED message.
+car 17 received CREATED message.
+car 18 received CREATED message.
+car 19 received CREATED message.
+car 20 received CREATED message.
+car 21 received CREATED message.
+car 22 received CREATED message.
+car 23 received CREATED message.
+car 24 received CREATED message.
+car 25 received CREATED message.
+car 26 received CREATED message.
+car 27 received CREATED message.
+car 28 received CREATED message.
+car 29 received CREATED message.
+car 30 received CREATED message.
+car 31 received CREATED message.
+police received CREATED message.
+Car 0 arrives from north.
+Car 2 arrives from west.
+Car 3 arrives from east.
+Car 5 arrives from south.
+Car 0 is waiting for cond.
+Car 2 is waiting for cond.
+Car 3 is waiting for cond.
+Car 5 is waiting for cond.
+police lock running.
+DEADLOCK DETECTED!
+police: north Go First
+police unlock running.
+Car 0 gets cond.
+Car 0 is leaving!
+Set next_to_go = 1
+Car 1 arrives from north.
+police lock running.
+police unlock running.
+Car 3 gets cond.
+Car 3 is leaving!
+Set next_to_go = 2
+Car 14 arrives from east.
+police lock running.
+police unlock running.
+Car 5 gets cond.
+Car 5 is leaving!
+Set next_to_go = 3
+Car 9 arrives from south.
+police lock running.
+police unlock running.
+Car 1 is waiting for cond.
+Car 2 gets cond.
+Car 2 is leaving!
+Set next_to_go = 0
+Car 7 arrives from west.
+police lock running.
+police unlock running.
+Car 1 gets cond.
+Car 1 is leaving!
+Set next_to_go = 1
+Car 4 arrives from north.
+Car 14 is waiting for cond.
+police lock running.
+police unlock running.
+Car 9 is waiting for cond.
+Car 14 gets cond.
+Car 14 is leaving!
+Set next_to_go = 2
+Car 18 arrives from east.
+police lock running.
+police unlock running.
+Car 7 is waiting for cond.
+Car 9 gets cond.
+Car 9 is leaving!
+Set next_to_go = 3
+Car 12 arrives from south.
+police lock running.
+police unlock running.
+Car 4 is waiting for cond.
+Car 7 gets cond.
+Car 7 is leaving!
+Set next_to_go = 0
+Car 11 arrives from west.
+police lock running.
+police unlock running.
+Car 18 is waiting for cond.
+Car 4 gets cond.
+Car 4 is leaving!
+Set next_to_go = 1
+Car 6 arrives from north.
+police lock running.
+police unlock running.
+Car 12 is waiting for cond.
+Car 18 gets cond.
+Car 18 is leaving!
+Set next_to_go = 2
+Car 23 arrives from east.
+police lock running.
+police unlock running.
+Car 12 gets cond.
+Car 12 is leaving!
+Set next_to_go = 3
+Car 11 is waiting for cond.
+Car 17 arrives from south.
+police lock running.
+police unlock running.
+Car 6 is waiting for cond.
+Car 11 gets cond.
+Car 11 is leaving!
+Set next_to_go = 0
+Car 15 arrives from west.
+police lock running.
+police unlock running.
+Car 23 is waiting for cond.
+Car 6 gets cond.
+Car 6 is leaving!
+Set next_to_go = 1
+Car 8 arrives from north.
+police lock running.
+police unlock running.
+Car 23 gets cond.
+Car 23 is leaving!
+Set next_to_go = 2
+Car 26 arrives from east.
+Car 17 is waiting for cond.
+police lock running.
+police unlock running.
+Car 17 gets cond.
+Car 17 is leaving!
+Set next_to_go = 3
+Car 22 arrives from south.
+Car 15 is waiting for cond.
+police lock running.
+police unlock running.
+Car 8 is waiting for cond.
+Car 15 gets cond.
+Car 15 is leaving!
+Set next_to_go = 0
+Car 19 arrives from west.
+police lock running.
+police unlock running.
+Car 26 is waiting for cond.
+Car 8 gets cond.
+Car 8 is leaving!
+Set next_to_go = 1
+Car 10 arrives from north.
+police lock running.
+police unlock running.
+Car 26 gets cond.
+Car 26 is leaving!
+Set next_to_go = 2
+Car 29 arrives from east.
+Car 22 is waiting for cond.
+police lock running.
+police unlock running.
+Car 22 gets cond.
+Car 22 is leaving!
+Set next_to_go = 3
+Car 19 is waiting for cond.
+Car 25 arrives from south.
+police lock running.
+police unlock running.
+Car 10 is waiting for cond.
+Car 19 gets cond.
+Car 19 is leaving!
+Set next_to_go = 0
+Car 21 arrives from west.
+police lock running.
+police unlock running.
+Car 29 is waiting for cond.
+Car 10 gets cond.
+Car 10 is leaving!
+Set next_to_go = 1
+Car 13 arrives from north.
+police lock running.
+police unlock running.
+Car 29 gets cond.
+Car 29 is leaving!
+Set next_to_go = 2
+Car 25 is waiting for cond.
+police lock running.
+police unlock running.
+Car 21 is waiting for cond.
+Car 25 gets cond.
+Car 25 is leaving!
+Set next_to_go = 3
+Car 31 arrives from south.
+police lock running.
+police unlock running.
+Car 13 is waiting for cond.
+Car 21 gets cond.
+Car 21 is leaving!
+Set next_to_go = 0
+Car 24 arrives from west.
+police lock running.
+police unlock running.
+Car 13 gets cond.
+Seeking for next.
+Car 13 is leaving!
+Set next_to_go = 2
+Car 16 arrives from north.
+police lock running.
+police unlock running.
+Car 31 is waiting for cond.
+police lock running.
+police unlock running.
+Car 24 is waiting for cond.
+Car 31 gets cond.
+Car 31 is leaving!
+Set next_to_go = 3
+police lock running.
+police unlock running.
+Car 16 is waiting for cond.
+Car 24 gets cond.
+Car 24 is leaving!
+Set next_to_go = 0
+Car 27 arrives from west.
+police lock running.
+police unlock running.
+Car 16 gets cond.
+Seeking for next.
+Seeking for next.
+Car 16 is leaving!
+Set next_to_go = 3
+Car 20 arrives from north.
+police lock running.
+police unlock running.
+police lock running.
+police unlock running.
+Car 27 is waiting for cond.
+police lock running.
+police unlock running.
+Car 20 is waiting for cond.
+Car 27 gets cond.
+Car 27 is leaving!
+Set next_to_go = 0
+police lock running.
+police unlock running.
+Car 20 gets cond.
+Seeking for next.
+Seeking for next.
+Seeking for next.
+Car 20 is leaving!
+Set next_to_go = 0
+Car 28 arrives from north.
+police lock running.
+police unlock running.
+police lock running.
+police unlock running.
+police lock running.
+police unlock running.
+Car 28 is waiting for cond.
+police lock running.
+police unlock running.
+Car 28 gets cond.
+Seeking for next.
+Seeking for next.
+Seeking for next.
+Car 28 is leaving!
+Set next_to_go = 0
+Car 30 arrives from north.
+police lock running.
+police unlock running.
+police lock running.
+police unlock running.
+police lock running.
+police unlock running.
+Car 30 is waiting for cond.
+police lock running.
+police unlock running.
+Car 30 gets cond.
+Seeking for next.
+Seeking for next.
+Seeking for next.
+Car 30 is leaving!
+Set next_to_go = 0
+police lock running.
+All cars gone, reach the end of the program.
+Here is the leaving order of this case:
+	Car 0 from north leaves.
+	Car 3 from east leaves.
+	Car 5 from south leaves.
+	Car 2 from west leaves.
+	Car 1 from north leaves.
+	Car 14 from east leaves.
+	Car 9 from south leaves.
+	Car 7 from west leaves.
+	Car 4 from north leaves.
+	Car 18 from east leaves.
+	Car 12 from south leaves.
+	Car 11 from west leaves.
+	Car 6 from north leaves.
+	Car 23 from east leaves.
+	Car 17 from south leaves.
+	Car 15 from west leaves.
+	Car 8 from north leaves.
+	Car 26 from east leaves.
+	Car 22 from south leaves.
+	Car 19 from west leaves.
+	Car 10 from north leaves.
+	Car 29 from east leaves.
+	Car 25 from south leaves.
+	Car 21 from west leaves.
+	Car 13 from north leaves.
+	Car 31 from south leaves.
+	Car 24 from west leaves.
+	Car 16 from north leaves.
+	Car 27 from west leaves.
+	Car 20 from north leaves.
+	Car 28 from north leaves.
+	Car 30 from north leaves.
+Program terminates.
+
+Process finished with exit code 0
+
