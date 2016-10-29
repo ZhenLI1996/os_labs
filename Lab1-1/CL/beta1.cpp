@@ -151,16 +151,16 @@ void* car_proc(void* in){
     const int id = input >> 2;
     cout << "Car " << id << " of direction " << dir_to_str(DIRECTION)
          << " created. Now wait for CREATED message.\n";
+    // when this thread is created, add 1 to counter
+    pthread_mutex_lock(&cnt_lock[DIRECTION]);
+    cnt[DIRECTION]++;
+    pthread_mutex_unlock(&cnt_lock[DIRECTION]);
     pthread_cond_signal(&creating_cond);
 
     pthread_mutex_lock(&created_lock);
     cout << "car " << id << " received CREATED message.\n";
     pthread_mutex_unlock(&created_lock);
     sleep(1);
-	// when this thread is created, add 1 to counter
-	pthread_mutex_lock(&cnt_lock[DIRECTION]);
-	cnt[DIRECTION]++;
-	pthread_mutex_unlock(&cnt_lock[DIRECTION]);
 
 	// wait ready_lock
     // once gained, this car is ready to go
@@ -297,8 +297,6 @@ int main(){
         pthread_cond_wait(&creating_cond, &creating_lock);
         pthread_mutex_unlock(&creating_lock);
     }
-    cout << "input from console are all read in.\n";
-    pthread_mutex_unlock(&created_lock);
 
 
     // create police thread
@@ -309,6 +307,8 @@ int main(){
         cout << "Program terminates.\n";
         return 0;
     }
+    cout << "input from console are all read in.\n";
+    pthread_mutex_unlock(&created_lock);
 
     pthread_join(thread_police, nullptr);
     cout << "Program terminates.\n";
